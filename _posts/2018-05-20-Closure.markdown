@@ -1,0 +1,49 @@
+---
+layout:       post
+title:        "对闭包的认识"
+subtitle:     ""
+date:         2018-05-20 12:00:00
+author:       "AnnaHuang"
+header-img:   ""
+header-mask:  0.3
+catalog:      true
+multilingual: false 
+tags:
+    - 前端开发
+    - JavaScript
+    - 闭包
+    - 基础
+---
+# 理解JS特殊的变量作用域（作用域链）
+变量作用域无非就是两种：全局变量、局部变量。
+<br>
+js语言的特殊之处在于函数内部可以直接读取全局变量。
+<br>
+一个例子就可以说明全部：
+<br>
+```
+    var color = "blue";
+    function changeColor(){
+        var anotherColor = "red";
+        function swapColors(){
+            var tempColor = anotherColor;
+            antherColor = color;
+            color = tempColor; 
+            //这里可以访问color,anotherColor和tempColor
+        }
+        //这里可以访问color和anotherColor，但不能访问tempColor
+        swapColors();
+}
+//这里只能访问color
+changeColor();
+```
+以上代码共涉及3个执行环境：全局环境、changeColor()的局部变量和swapColors()的局部环境。全局环境中有一个变量color和一个函数changColor()。
+changeColor()的局部变量中有名为anotherColor的变量和一个名为SwapColors()的函数，但它也可以访问全局变量中的变量color。swapColors()的局
+部环境中有个变量tempColor，该变量只能在这个环境中访问到。无论全局环境还是changeColor()的局部环境都无权访问tempColor。然而，在swapColors()
+内部则可以访问其他两个环境中的所有变量，因为那两个环境是它的父执行环境。这是js的[作用域链]()。
+
+>注意：如果在函数内部初始化变量时没有使用var声明，``该变量会自动被添加到全局变量。
+
+#思考：如何从外部读取函数内部变量？
+前面已经说了，正常情况下外部无法获取函数内部变量。
+解决方案:**在函数内部再定义一个函数**，这个函数返回父函数内部变量。

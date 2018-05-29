@@ -1,0 +1,111 @@
+---
+layout:       post
+title:        "javaScript的变量"
+subtitle:     ""
+date:         2018-05-20 12:00:00
+author:       "AnnaHuang"
+header-img:   ""
+catalog:      true
+multilingual: false
+tags:
+    - 前端开发
+    - JavaScript
+    - 基础
+---
+
+# 变量
+## 基本类型和引用类型
+javaScript的基本类型有5种：undefined、Null、Boolean、Number和String。
+引用类型值指那些可能由多个值构成的对象，如`var person = new Object(); person.name = "AnnaHuang";`。
+
+## 复制变量值
+#### 基本类型的复制
+```
+    var num1 = 5;
+    var num2 = num1;
+    num1++;
+    alert(num2);//5
+```
+当使用num1的值来初始化num2时，num2中也保存了值5。但num2中的5与num1中的5是完全独立的。此后，这两个变量可以参与任何操作而不会相互影响。
+#### 引用类型的复制
+```
+    var obj1 = new Object();
+    var obj2 = obj1;
+    obj1.name = "AnnaHuang";
+    alert(obj2.name);//"AnnaHuang"
+```
+引用类型值的复制不同于基本类型，obj1与obj2都指向同一个对象。如图：
+![引用类型值的复制](../img/in-post/copeFromReferenceType.png)
+## 传递参数
+ECMAScript中所有函数的参数都是**按值传递**的。
+基本类型的参数传递如同基本类型复制一样。
+如：
+```
+    function addTen(num){
+        num += 10;
+        return num;
+    }
+    var count = 10;
+    var result = addTen(count);
+    alert(count);//10,没有变化
+    alert(result);//20
+```
+引用类型的参数传递是将被传递对象的地址复制给一个局部变量，这个局部变量的变化会反应在函数的外部。
+如：
+```
+    function setName(obj){
+        obj.name = "AnnaHuang";
+    }
+    var person = new Object();
+    setName(person);
+    alert(person.name);//"AnnaHuang" 
+```
+根据上面代码看出，即使这个变量是**按值传递**的，obj也会按引用来访问同一个对象。于是，当在函数内部为
+obj添加一个属性name，并为它赋值后，函数外部的person也会有所反映；因为person指向的对象在堆内
+存中只有一个，而且是全局对象。有很多开发人员会错误地认为：在局部作用域中修改的对象会在全局作用域
+中反映出来，就说明参数是按引用传递的。为了证明对象是按值传递的，我们再来看看下面这个经过修改的例
+子：
+```
+    function setName(obj){
+            obj.name = "AnnaHuang";
+            obj = new Object();
+            obj.name = "Json";
+        }
+        var person = new Object();
+        setName(person);
+        alert(person.name);//"AnnaHuang"
+```
+如果person是按引用传递的，那么person就会自动修改为指向其name属性值为"Jason"的新对象。结果显然
+不是。这说明**即使在函数内部修改了参数的值，但是原始的引用仍然保持不变。实际上，当在函数内部重
+写obj时，这个变量引用的就是一个局部对象了。而这个局部对象会在函数执行完毕后立即销毁**
+## 检测类型
+要检测一个变量是不是基本数据类型，用typeof操作符是最佳的工具。说得更加具体一点，typeof操作符是确定
+一个变量是字符串、数值、布尔值，还是undefined得最佳工具。如果变量的值是一个对象或null，则typeof操
+作符会返回object：
+```$xslt
+    var s = "AnnaHuang";
+    var b = true;
+    var i = 22;
+    var u;
+    var n = null;
+    var o = new Object();
+    
+    alert(typeof s);//string
+    alert(typeof b);//boolean
+    alert(typeof i);//number
+    alert(typeof u);//undefined
+    alert(typeof n);//object
+    alert(typeof o);//object
+```
+
+***注意：typeof正则表达式返回object,typeof函数返回function***
+<br>
+typeof检测基本数据类型的时候很管用，但是检测对象的时候这个typeof操作符的用处就不大了。对于对象，通常我们是
+想知道是什么类型的对象。为此，ECMAScrip提供了instanceof操作符，如下所示：
+
+```
+    alert(person instanceof Object);//变量person是Object吗？
+    alert(person instanceof Array);//变量person是Array吗？
+    alert(person instanceof RegExp);//变量person是RegExp吗？
+```
+
