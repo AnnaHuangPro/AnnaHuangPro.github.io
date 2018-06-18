@@ -100,5 +100,28 @@ font2web
     }
 ```
 
-
-
+## @font-face与svg
+怎么解析svg字体图标文件，如何知道每个icon图标对应的字体编码呢？
+【推荐这个网站】 **https://icomoon.io/app/#/select**
+![font_face](./img/inpost/font_face_5.png)
+打开网站之后，点击这个【import icons】，选择svg字体图标，然后就可以预览svg字体图标的内容了，如下：
+![font_face](./img/inpost/font_face_6.png)
+接下来，随意点击几个图标，然后再点击右下方的【generate font】，如图所示
+![font_face](./img/inpost/font_face_7.png)
+这样就可以得到字体图标对应的编码信息了，得到这个编码有啥用呢？
+![font_face](./img/inpost/font_face_8.png)
+我也用的不太熟，以葫芦画瓢吧，参照【bootstrap】的写法
+```
+.icon-dress:before{  
+    content: "\e633";  
+}  
+.icon-youjiantou:before{  
+    content: "\e644";  
+}  
+.icon-love:before{  
+    content: "\e63e";  
+}  
+```
+css搞定，然后在html页面引用一下，看一下图标能出来不：
+![font_face](./img/inpost/font_face_9.png)
+哎呀，还真出来了，搞定了，好开心，程序猿就这点追求！！哈哈
