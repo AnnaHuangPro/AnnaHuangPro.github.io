@@ -84,15 +84,15 @@ font2web
 更多转换工具可参考地址：http://blog.csdn.net/xiaolongtotop/article/details/8316554
 
 特殊字体已经在你的电脑中了，现在我们需要想办法获得@font-face所需的.eot,.woff,.ttf,.svg字体格式。要获取这些字体格式，我们同样是需要第三方工具或者软件来实现，下面我给大家推荐一款常用的一个工具[fontsquirrel](https://www.fontsquirrel.com/tools/webfont-generator)
-![font_face](./img/in-post/font_face.png)
+![font_face](../img/in-post/font_face.png)
 如果你进入页面没有看到上图，你可以直接点击导航:
-![font_face](./img/in-post/font_face_1.png)
+![font_face](../img/in-post/font_face_1.png)
 如果你看到了上面的界面，那就好办了，我们来看如何应用这个工具生成@font-face需要的各种字体，先把我们刚才下载的字体上传上去：
-![font_face](./img/in-post/font_face_2.png)
+![font_face](../img/in-post/font_face_2.png)
 上传后按下图所示操作：
-![font_face](./img/in-post/font_face_3.png)
+![font_face](../img/in-post/font_face_3.png)
 现在从Font Squirrel下载下来的文件已经保存在你本地的电脑上了，接着只要对他进行解压缩，你就能看到文件列表如下所示：
-![font_face](./img/inpost/font_face_4.png)
+![font_face](../img/inpost/font_face_4.png)
                      到这里为止，我们已经通过@fon-t-face自定义好所需的SingleMalta字体，离最后效果只差一步了，就是把自己定义的字体应用到你的Web中的DOM元素上：
 ```
     h2.singleMalta {
@@ -103,13 +103,13 @@ font2web
 ## @font-face与svg
 怎么解析svg字体图标文件，如何知道每个icon图标对应的字体编码呢？
 【推荐这个网站】 **https://icomoon.io/app/#/select**
-![font_face](./img/inpost/font_face_5.png)
+![font_face](../img/inpost/font_face_5.png)
 打开网站之后，点击这个【import icons】，选择svg字体图标，然后就可以预览svg字体图标的内容了，如下：
-![font_face](./img/inpost/font_face_6.png)
+![font_face](../img/inpost/font_face_6.png)
 接下来，随意点击几个图标，然后再点击右下方的【generate font】，如图所示
-![font_face](./img/inpost/font_face_7.png)
+![font_face](../img/inpost/font_face_7.png)
 这样就可以得到字体图标对应的编码信息了，得到这个编码有啥用呢？
-![font_face](./img/inpost/font_face_8.png)
+![font_face](../img/inpost/font_face_8.png)
 我也用的不太熟，以葫芦画瓢吧，参照【bootstrap】的写法
 ```
 .icon-dress:before{  
@@ -123,5 +123,5 @@ font2web
 }  
 ```
 css搞定，然后在html页面引用一下，看一下图标能出来不：
-![font_face](./img/inpost/font_face_9.png)
+![font_face](../img/inpost/font_face_9.png)
 哎呀，还真出来了，搞定了，好开心，程序猿就这点追求！！哈哈
