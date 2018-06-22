@@ -59,7 +59,9 @@ tags:
     </body>  
 </html>  
 ```
+
 单击"保存数据"按钮时调用saveStorage方法保存数据，单击"读取数据"按钮时调用loadStorage方法调用数据，这两个方法均在脚本文件script.js中，如下：
+
 ```
 //sessionStorage 示例  (保存一个会话周期:从打开浏览器——到关闭浏览器窗口)  
 function saveStorage(id){  
@@ -133,3 +135,25 @@ localStorage.key="value";
 在进行读写时，不管是哪个对象，都可以通过该对象的getItem方法来读取数据，也可以该对象的自定义属性值读取数据；可以通过该对象的setItem方法保存数据，也可以通过该对象的自定义属性值保存数据。保存数据时按“键名/键值”的形式进行保存。当通过该对象的getItem方法读取数据时，将参数指定为键名，该方法返回键值；当通过该对象的自定义属性值读取数据时，可以将该对象的某个自定义属性名作为键名，访问该自定义属性的属性值即可得到键值；当通过该对象的setItem方法保存数据时，将第一个参数指定为键名，将第二个参数指定为键值；当通过该对象的自定义属性值保存数据时，可以将该对象的某个自定义属性名作为键名，然后直接将该自定义属性值设置为键值。
 
 **注意：在保存数据时不允许重复保存相同的键名。保存后可以修改键值，但不允许修改键名(只能重新取键名，然后再保存键值)。**
+
+## 附加（存储对象时）
+> localStorage理论上只能存储字符串，存对象的话要把对象转换成字符串，取出来用之前也需要把字符串转换成对象。
+```
+    var obj = { 
+        name:'Jim',
+        password: "123"
+    }; 
+    var array = [];
+    array.push(obj);
+    array.push(obj);
+    //转成json字符串
+    var str = JSON.stringify(array); 
+    //存入 
+    localStorage.obj = str; 
+    //读取 
+    str1 = localStorage.obj; 
+    //重新转换为对象 
+    obj1 = JSON.parse(str1);
+    console.log(obj1)
+
+```
