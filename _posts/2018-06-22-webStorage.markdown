@@ -137,7 +137,9 @@ localStorage.key="value";
 **注意：在保存数据时不允许重复保存相同的键名。保存后可以修改键值，但不允许修改键名(只能重新取键名，然后再保存键值)。**
 
 ## 附加（存储对象时）
+
 > localStorage理论上只能存储字符串，存对象的话要把对象转换成字符串，取出来用之前也需要把字符串转换成对象。
+
 ```
     var obj = { 
         name:'Jim',
@@ -157,3 +159,37 @@ localStorage.key="value";
     console.log(obj1)
 
 ```
+
+## 问题
+
+   因为我最近在写一个画廊，当我发现浏览器支持这么好的一个缓存机制时，可开心死我了
+但是用的时候就发现了问题，贴上浏览器端的报错（这时的我仅仅存了3张1.5M的图片）
+
+![](/img/in-post/webStorage存储bug.png)
+
+这表明浏览器在告诉你，它的localStorage的存储已经满了不够你用啦！
+我们来找到各个浏览器对webStorage的支持容量可以用过以下测试代码来测试大小
+```
+localStorage.clear();
+localStorage.setItem("fuse", "-");
+while(true) {
+    let fuse = localStorage.getItem("fuse");
+    try { 
+        localStorage.setItem("fuse", fuse + fuse);
+    } catch(e) {
+        console.log("Your browser blew up at " + fuse.length + " with exception: " + e);
+    break;
+    }
+}
+localStorage.removeItem("fuse");
+```
+
+![](/img/in-post/webStorage测试大小.png)
+ 
+如图我们发现4194304/1024/1024 = 4M
+
+谷歌浏览器的webStorage只有4M的容量（比session的4k大很多），只适合存点小东西，现在转向使用浏览器数据库IndexedDB
+
+## 反思
+
+   webStorage只适用于数据量比较小，存图片建议存地址（不建议存base64编码）
