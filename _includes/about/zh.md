@@ -2,13 +2,17 @@
 > 在造轮子中成长。
 > keep hungry , keep foolish
 
-Hey，我是黄意圆，励志做一个精致的程序媛，在学习中反思与总结，顺带想想人生哲理等问题。欢迎来到我的世界----偶尔出没于[博客](https://annahuangpro.github.io/)、[微博](https://weibo.com/annaHuangPro)、[知乎](https://www.zhihu.com/people/huang-yi-yuan-10-15)（目前没有回答一个问题，还在观望中┓( ´-` )┏）、[Github](https://github.com/AnnaHuangPro) 等地带，绝招尚在开发中。
+Hey，我是黄意圆，励志做一个精致的程序媛，在学习中反思与总结，顺带想想人生哲理等问题。
+欢迎来到我的世界----偶尔出没于[博客](https://annahuangpro.github.io/)、
+[微博](https://weibo.com/annaHuangPro)、[知乎](https://www.zhihu.com/people/huang-yi-yuan-10-15)（目前没有回答一个问题，还在观望中┓( ´-` )┏）、
+[Github](https://github.com/AnnaHuangPro) 等地带，绝招尚在开发中。
 
 > 从出生到2018年
 
 职业是学生，励志做高级前端开发工程师，
 
-一些作品，👉 戳 [Portfolio](/portfolio)、[Github](https://github.com/AnnaHuangPro)、[coolGallery](https://annahuangpro.github.io/cool-gallery-effects/)。 
+一些作品，👉 戳 [Portfolio](/portfolio)、[Github](https://github.com/AnnaHuangPro)、
+[coolGallery](https://annahuangpro.github.io/cool-gallery-effects/)。 
 
 
 <!--##### Talks
