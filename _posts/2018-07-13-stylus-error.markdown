@@ -31,10 +31,14 @@ tags:
     
 成功解决
 
-> 因此在首次初始化的时候进行如下步骤的安装
+因此在首次初始化的时候进行如下步骤的安装
+
 1.npm install stylus --save-dev
+
 2.npm install stylus-loader --save-dev
+
 3.npm run dev（每次改动了配置文件均需要重新启动项目）
+
 
 
   [1]: https://annahuangpro.github.io/images/20187/13/stylus-error.png
