@@ -33,12 +33,17 @@ tags:
 }
 ```
 
+> （此方法是网上的方法，我试验时只能让当前元素水平居中，并不能让子元素水平居中，当子元素有float:left时，并不能生效）
+
+ ****可行性待考证！**
+
+
 > fit-content是CSS3中给width属性新加的一个属性值,它配合margin可以轻松实现水平居中, 目前只支持Chrome 和 Firefox浏览器.
 
-4.使用flex 2012年版本布局, 可以轻松的实现水平居中, 子元素设置如下:
+4.使用flex 2012年版本布局, 可以轻松的实现这个元素的子元素的水平居中, 元素设置如下:
 
 ```
-.son{
+.parent{
     display: flex;
     justify-content: center;
 }

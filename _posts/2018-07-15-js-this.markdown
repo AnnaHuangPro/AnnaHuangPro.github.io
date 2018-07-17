@@ -1,0 +1,67 @@
+---
+layout:       post
+title:        "关于this解析终极版"
+subtitle:     ""
+date:         2018-07-15 12:00:00
+author:       "AnnaHuang"
+header-img:   ""
+header-mask:  0.3
+catalog:      true
+multilingual: false  
+tags:
+    - JavaScript
+    - 前端开发
+    
+---
+
+# 1.1 为什么要用this
+
+先看如下代码：
+```
+    function identify(){
+        return this.name.toUpperCase();
+    }
+    function speak(){
+        var greeting = "Hello,I'm "+identify.call(this);
+    }
+    var me={
+        name:"Kyle"
+    };
+    var you={
+        name:"Reader"
+    };
+    
+    identify.call(me);//KYLE
+    identify.call(you);//READER
+    
+    speak.call(me);//Hello,我是KYLE
+    speak.call(you);//Hello,我是READER
+```
+
+   这段代码可以再不同的上下文对象（me和you）中重复使用identify()和speak(),不用针对每个对象编写不同版本的函数。
+   
+   如果不用this，那就需要给这两个函数显式的传入一个上下文对象。
+   
+   ```
+   
+      function identify(context){
+        return context.name.toUpperCase();
+      }
+      
+      function speak(context){
+        var greeting = "Hello,I'm "+ identify(context);
+        console.log(greeting);
+      }
+      
+      identify(you);//READER
+      speak(me);//hello,我是KYLE
+      
+   ```
+   
+   然而，this提供了一种更加优雅的方式来隐式“传递”一个对象引用，因此可以将API设计得更加简洁并且易于复用。
+   
+# 1.2 对this的误解
+   有两种常见的对于this的解释，但是它们都是错误的，不要太拘束与“this”的字面意思就会产生一些误解。
+
+## 1.2.1 指向自身
+
