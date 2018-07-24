@@ -74,7 +74,11 @@ Because even though setTimeout was called with a delay of zero, it's placed on a
 
 如何实现异步编程请看阮一峰老师的：  http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html
 
+ps:
 
+单线程异步IO的主流程代码可以完全无锁，这个是单线程异步IO的最大优势。在性能损失不多的情况下（和完全无锁的多线程方案对比，现实中完全无锁的多线程环境几乎不存在），很值得考虑。唯一需要考虑的，单线程异步IO可能对多核CPU的利用不如传统的多线程充分。
+
+另外，还可以扩展一下，在编写复杂应用时，除了IO等阻塞操作，CPU密集的操作也可以拿出来到单独的线程中执行，尽量把耗时不多的逻辑部分留在单线程中，由于运行在单线程环境，这样很大程度上简化逻辑部分的编写。
 
 
 

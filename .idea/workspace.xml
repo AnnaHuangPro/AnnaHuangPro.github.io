@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e43c19da-5af5-445e-a70a-cdabd7196662" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/_posts/2018-07-24-synchronize-and-asynchronous.md" afterPath="$PROJECT_DIR$/_posts/2018-07-24-synchronize-and-asynchronous.md" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,10 +20,10 @@
         <entry file="file://$PROJECT_DIR$/_posts/2018-07-24-synchronize-and-asynchronous.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="261">
-                <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <first_editor relative-caret-position="552">
+                <caret line="78" column="35" lean-forward="false" selection-start-line="78" selection-start-column="20" selection-end-line="78" selection-end-column="35" />
                 <folding>
-                  <marker date="1532395342453" expanded="true" signature="925:1215" ph="&lt;script/&gt;" />
+                  <marker date="1532397202742" expanded="true" signature="925:1215" ph="&lt;script/&gt;" />
                 </folding>
               </first_editor>
               <second_editor />
@@ -226,18 +226,18 @@
       <workItem from="1531809175804" duration="1821000" />
       <workItem from="1531829317281" duration="1202000" />
       <workItem from="1531881614189" duration="25000" />
-      <workItem from="1532393000082" duration="3052000" />
+      <workItem from="1532393000082" duration="4262000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98631000" />
+    <option name="totallyTimeSpent" value="99841000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1456" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21156558" sideWeight="0.48039216" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25881523" sideWeight="0.48039216" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18080357" sideWeight="0.51960784" order="4" side_tool="true" content_ui="tabs" />
@@ -663,10 +663,10 @@
     <entry file="file://$PROJECT_DIR$/_posts/2018-07-24-synchronize-and-asynchronous.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="261">
-            <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <first_editor relative-caret-position="552">
+            <caret line="78" column="35" lean-forward="false" selection-start-line="78" selection-start-column="20" selection-end-line="78" selection-end-column="35" />
             <folding>
-              <marker date="1532395342453" expanded="true" signature="925:1215" ph="&lt;script/&gt;" />
+              <marker date="1532397202742" expanded="true" signature="925:1215" ph="&lt;script/&gt;" />
             </folding>
           </first_editor>
           <second_editor />
