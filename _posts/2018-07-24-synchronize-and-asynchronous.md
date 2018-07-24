@@ -1,0 +1,81 @@
+---
+layout:       post
+title:        "js中的同步和异步的个人理解"
+subtitle:     ""
+date:         2018-07-24 12:00:00
+author:       "AnnaHuang"
+header-img:   ""
+header-mask:  0.3
+catalog:      true
+multilingual: false  
+tags:
+    - JavaScript
+    - 前端开发
+    
+---
+
+> 在使用中发现神奇，随时更新
+
+你应该知道，javascript语言是一门**单线程**的语言，不像java语言，类继承Thread再来个thread.start就可以开辟一个线程，所以，javascript就像一条流水线，仅仅是一条流水线而已，要么加工，要么包装，不能同时进行多个任务和流程。
+
+那么这里说的同步和异步到底是什么呢？如果你真的不懂，我希望你认真读完这篇文章。其实我个人觉得js官方的文档在使用两个词的时候并不准确，包括很多其他词汇，都只是听起来高深，但实际应用好像跟这些词没半毛钱关系。例如“事件委托”这个词，不知道的人乍一看谁又能说出“事件委托”是什么意思？委托什么事件？怎么个委托，我看不如干脆就叫“事件在外层元素中的捕获”，虽然长一点，一下就能看懂。
+
+回归正轨，“同步”——一下就让人想到“一起”这个词；“异步”呢，从字面来讲，好像是在不同的（异）的ways上do something，那首先想到的词可能是“一边...一边...”,比如‘小明一边吃雪糕一边写作业’，这完全没毛病，雪糕吃完了，作业也写完了，这就是异步？**那就大错特错了！**
+
+其实同步和异步，无论如何，做事情的时候都是只有一条流水线（单线程），**同步和异步的差别就在于这条流水线上各个流程的执行顺序不同。**
+
+最基础的异步是setTimeout和setInterval函数，很常见，但是很少人有人知道其实这就是异步，因为它们可以控制js的执行顺序。我们也可以简单地理解为：可以改变程序正常执行顺序的操作就可以看成是异步操作。如下代码：
+
+```
+<script type="text/javascript">
+    console.log( "1" );
+    setTimeout(function() {
+        console.log( "2" )
+    }, 0 );
+    setTimeout(function() {
+        console.log( "3" )
+    }, 0 );
+    setTimeout(function() {
+        console.log( "4" )
+    }, 0 );
+    console.log( "5" );
+</script>
+```
+ > 顺序：1 5 2 3 4 
+ 
+ 可见，尽管我们设置了setTimeout（function，time）中的等待时间为0，结果其中的function还是后执行。
+
+火狐浏览器的api文档有这样一句话：
+
+Because even though setTimeout was called with a delay of zero, it's placed on a queue and scheduled to run at the next opportunity, not immediately. Currently executing code must complete before functions on the queue are executed, the resulting execution order may not be as expected.
+
+意思就是:尽管setTimeout的time延迟时间为0，其中的function也会被放入一个队列中，等待下一个机会执行，当前的代码（指不需要加入队列中的程序）必须在该队列的程序完成之前完成，因此结果可能不与预期结果相同。
+
+这里说到了一个“队列”（即任务队列），该队列放的是什么呢，放的就是setTimeout中的function，这些function依次加入该队列，即该队列中所有function中的程序将会在该队列以外的所有代码执行完毕之后再以此执行，这是为什么呢？因为在执行程序的时候，浏览器会默认setTimeout以及ajax请求这一类的方法都是耗时程序（尽管可能不耗时），将其加入一个队列中，该队列是一个存储耗时程序的队列，在所有不耗时程序执行过后，再来依次执行该队列中的程序。
+
+又回到了最初的起点——javascript是单线程。单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。如果前一个任务耗时很长，后一个任务就不得不一直等着。于是就有一个概念——任务队列。如果排队是因为计算量大，CPU忙不过来，倒也算了，但是很多时候CPU是闲着的，因为IO设备（输入输出设备）很慢（比如Ajax操作从网络读取数据），不得不等着结果出来，再往下执行。于是JavaScript语言的设计者意识到，这时主线程完全可以不管IO设备，挂起处于等待中的任务，先运行排在后面的任务。等到IO设备返回了结果，再回过头，把挂起的任务继续执行下去。
+
+**于是，所有任务可以分成两种，一种是同步任务（synchronous），另一种是异步任务（asynchronous）。同步任务指的是，在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务；异步任务指的是，不进入主线程、而进入"任务队列"（task queue）的任务，只有等主线程任务执行完毕，"任务队列"开始通知主线程，请求执行任务，该任务才会进入主线程执行。**
+
+具体来说，异步运行机制如下：
+
+（1）所有同步任务都在主线程上执行，形成一个执行栈（execution context stack）。
+（2）主线程之外，还存在一个"任务队列"（task queue）。只要异步任务有了运行结果，就在"任务队列"之中放置一个事件。
+（3）一旦"执行栈"中的所有同步任务执行完毕，系统就会读取"任务队列"，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行。
+（4）主线程不断重复上面的第三步。
+
+只要主线程空了，就会去读取"任务队列"，这就是JavaScript的运行机制。这个过程会不断重复。  
+
+"任务队列"是一个事件的队列（也可以理解成消息的队列），IO设备完成一项任务，就在"任务队列"中添加一个事件，表示相关的异步任务可以进入"执行栈"了。主线程读取"任务队列"，就是读取里面有哪些事件。
+"任务队列"中的事件，除了IO设备的事件以外，还包括一些用户产生的事件（比如鼠标点击、页面滚动等等），比如$(selectot).click(function)，这些都是相对耗时的操作。只要指定过这些事件的回调函数，这些事件发生时就会进入"任务队列"，等待主线程读取。
+所谓"回调函数"（callback），就是那些会被主线程挂起来的代码，前面说的点击事件$(selectot).click(function)中的function就是一个回调函数。异步任务必须指定回调函数，当主线程开始执行异步任务，就是执行对应的回调函数。例如ajax的success，complete，error也都指定了各自的回调函数，这些函数就会加入“任务队列”中，等待执行。
+
+本文思想来源：http://www.cnblogs.com/c3gen/p/6170504.html  
+
+如何实现异步编程请看阮一峰老师的：  http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html
+
+
+
+
+
+
