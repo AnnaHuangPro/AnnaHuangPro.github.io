@@ -1,0 +1,78 @@
+---
+layout:       post
+title:        "OOCSS 面向对象的CSS"
+subtitle:     ""
+date:         2018-08-01 12:00:00
+author:       "AnnaHuang"
+header-img:   ""
+header-mask:  0.3
+catalog:      true
+multilingual: false  
+tags:
+    - JavaScript框架
+    - 前端开发
+    
+---
+
+## 一、什么是面向对象的CSS（OOCSS）
+
+面向对象的CSS是一种容易重用的一种CSS规则，也是OOP的概念，从而降低了页面的加载时间，提高了网面的性能。
+
+这里关键的一点就是如何在页面中识别，创建和模块化可重用的对象，并在页面中任何需要的地方重用，并扩展其附加功能。在这里我们所说的对象其实很简单，就是指基本的HTML标签和CSS样式规则。**现在最关键的，也是最具有挑战性的一点就是确定“对象”，并给这个对象创建CSS样式规则**。
+
+如，我们有一个容器是页面page的1/4宽，有一个蓝色的背景，1px灰色的边框，10px的左右边距，5px的上边距，10px的下边距，以前对于这样一个样式，我们常常给这个容器创建一个类，并把这些样式全部加上：
+```
+<div class="size1of4"></div>
+```
+
+相应的样式加在这个容器上：
+```
+.size1of4 {
+	background: blue;
+	border: 1px solid #ccc;
+	margin: 5px 10px 10px;
+	width: 25%;
+}
+```
+
+然而使用oocss的话，我们不这样做，我把为这个容器创建更多的类，并且每个样式对应一个类，**这样是为了后面可以重复使用这些组件的样式，避免重复写相同的样式**，就拿这个实例来说，我们给这个容器增加下面的类：bgBlue,solidGray,mts,mlm,mrm,mbm，如：
+```
+<div class="size1of4 bgBlue solidGray mts mlm mrm mbm"></div>
+```
+
+样式拆分到每一个组件上
+
+```
+.size1of4 {width: 25%;}
+.bgBlue {background:blue}
+.solidGray {border: 1px solid #ccc}
+.mts {margin-top: 5px}
+.mrm {margin-right: 10px}
+.mbm {margin-bottom: 10px}
+.mlm {margin-left: 10px}
+
+```
+
+## 二、面向对象的CSS理论
+引用OOCSS之父Nicole Sullivan话来说， 面向对象的CSS有两个原则：
+
+- 独立的结构和样式
+- 独立的容器和内容
+
+**综合上述，OOCSS最关键的一点就是：提高他的灵活性和可重用性。这个也是OOCSS最重要的一点。**
+
+## 三、使用面向对象的CSS理由
+
+- 将我们的CSS样式更具有重用性
+- 另外也使用我们的样式变得更小
+- 第三个好处就是我们可以容易的改变一个网站的设计
+
+## 四、如何使用面向对象的CSS
+以下几点是创建OOCSS的关键部分
+
+- 创建一个组件库
+- 独立的容器和内容，并且避免样式来依赖位置
+- 独立的结构和样式
+- 使用类名为扩展基本对象
+- 坚持以语义类来命名类名
+
