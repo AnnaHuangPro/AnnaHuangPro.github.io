@@ -124,6 +124,8 @@ var myBest = fruits.slice(-3,-1);
 //Lemon,Apple
 ```
 
+**注意：** slice() 方法不会改变原始数组。
+
 
 
 ## Array.prototype.concat()
@@ -142,6 +144,8 @@ var children = hege.concat(stale,kai);
 
 
 
+## Array.prototype.concat()
+
 #### 定义和用法
 
 concat() 方法用于连接两个或多个数组。
@@ -149,6 +153,10 @@ concat() 方法用于连接两个或多个数组。
 该方法不会改变现有的数组，而仅仅会返回被连接数组的一个 **副本** 。
 
 **注意：参数可以是数组也可以是具体的值，可以是任意多个** 
+
+
+
+## Array.prototype.reduce()
 
 
 
@@ -291,8 +299,45 @@ array1.forEach(function(element) {
 // expected output: "a"
 // expected output: "b"
 // expected output: "c"
-
 ```
+
+
+
+### 另一段代码示例
+
+```javascript
+function Counter() {
+    this.sum = 0;
+    this.count = 0;
+}
+
+Counter.prototype.add = function(array) {
+    array.forEach(function(entry) {
+        this.sum += entry;
+        ++this.count;
+    }, this);
+    //console.log(this);
+};
+
+var obj = new Counter();
+obj.add([1, 3, 5, 7]);
+
+obj.count; 
+// 4 === (1+1+1+1)
+obj.sum;
+// 16 === (1+3+5+7)
+```
+
+*thisValue* 参数：可选。传递给函数的值一般用 "this" 值。
+如果这个参数为空， "undefined" 会传递给 "this" 值
+
+
+
+>  注意：没有办法中止或者跳出 forEach 循环，除了抛出一个异常。如果你需要这样，使用forEach()方法是错误的，你可以用一个简单的循环作为替代。如果您正在测试一个数组里的元素是否符合某条件，且需要返回一个布尔值，那么可使用 [`Array.every`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/every) 或 [`Array.some`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/some)。如果可用，新方法 [`find()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/find) 或者[`findIndex()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex) 也可被用于真值测试的提早终止。
+
+
+
+forEach()函数可以执行函数内的语句，可见可以改变原数组
 
 
 
@@ -325,7 +370,6 @@ var array1 = [1, 30, 39, 29, 10, 13];
 
 console.log(array1.every(isBelowThreshold));
 // expected output: true
-
 ```
 
 ### 描述
@@ -354,7 +398,6 @@ var even = function(element) {
 
 console.log(array.some(even));
 // expected output: true
-
 ```
 
 ### 描述

@@ -24,7 +24,7 @@ tags:
 
 3.若子元素包含 float:left 属性, 为了让子元素水平居中, 则可让父元素宽度设置为fit-content,并且配合margin, 作如下设置:
 
-```
+```css
 .parent{
     width: -moz-fit-content;
     width: -webkit-fit-content;
@@ -33,25 +33,31 @@ tags:
 }
 ```
 
-> （此方法是网上的方法，我试验时只能让当前元素水平居中，并不能让子元素水平居中，当子元素有float:left时，并不能生效）
+> （此方法是即是将父元素的属性加在子元素上，就相当于一个空白的父元素带着子元素跑。）
+>
+> fit-content 即是将父元素的宽适应子元素的宽。
 
- ****可行性待考证！**
+
 
 
 > fit-content是CSS3中给width属性新加的一个属性值,它配合margin可以轻松实现水平居中, 目前只支持Chrome 和 Firefox浏览器.
 
+
+
 4.使用flex 2012年版本布局, 可以轻松的实现这个元素的子元素的水平居中, 元素设置如下:
 
-```
+```css
 .parent{
     display: flex;
     justify-content: center;
 }
 ```
 
+
+
 5.使用flex 2009年版本, 父元素display: box;box-pack: center;如下设置:
 
-```
+```css
 .parent {
     display: -webkit-box;
     -webkit-box-orient: horizontal;
@@ -71,6 +77,8 @@ tags:
 }
 ```
 
+
+
 6.使用CSS3中新增的transform属性, 子元素设置如下:
 
 ```
@@ -83,19 +91,18 @@ tags:
 
 7.使用绝对定位方式, 以及负值的margin-left, 子元素设置如下:
 
-```
+```css
 .son{
     position:absolute;
     width:固定;
     left:50%;
     margin-left:-0.5宽度;
 }
-
 ```
 
 8.使用绝对定位方式, 以及left:0;right:0;margin:0 auto; 子元素设置如下:
 
-```
+```css
 .son{
     position:absolute;
     width:固定;
@@ -124,7 +131,6 @@ tags:
     content:'';
     height:100%;
 }
-
 ```
 
 > 这是一种很流行的方法, 也适应IE7.
@@ -155,8 +161,8 @@ tags:
 **优点**
 + 内容块的宽高任意, 优雅的溢出.
 + 可用于更复杂高级的布局技术中.
-**缺点**
-IE8/IE9不支持
+  **缺点**
+  IE8/IE9不支持
 + 需要浏览器厂商前缀
 + 渲染上可能会有一些问题
 
