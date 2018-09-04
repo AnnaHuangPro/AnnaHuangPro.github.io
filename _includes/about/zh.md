@@ -12,7 +12,7 @@ Hey，我是黄意圆，励志做一个精致的程序媛，在学习中反思�
 职业是学生，励志做高级前端开发工程师，
 
 一些作品，👉 戳 [Portfolio](/portfolio)、[Github](https://github.com/AnnaHuangPro)、
-[coolGallery](https://annahuangpro.github.io/cool-gallery-effects/)、[TODO](https://annahuangpro.github.io/TODO/index.html#/)。 
+[coolGallery](https://annahuangpro.github.io/cool-gallery-effects/)、[TODO](https://annahuangpro.github.io/TODO/index.html#/)、[俄罗斯方块](https://annahuangpro.github.io/tetris/)、[弹幕](https://annahuangpro.github.io/barrage/)。 
 
 
 <!--##### Talks
